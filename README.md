@@ -1,64 +1,179 @@
-DataBase Project - Automotive Service and Damage Tracking Database System
-DataBase Project is a desktop database application built for a university database course. It models the operational flow of an automotive service business with two connected modules:
+# Automotive Service & Damage Tracking Database System
 
-Car Repair Tracking: service entries, work orders, labor records, used parts, inventory, supplier orders, invoices, payments, and employee registration.
-Damage Tracking: customers, vehicles, accident records, damage assessments, insurance policies, insurance claims, and parts inventory.
-The project is intentionally database-centered: most screens perform CRUD operations against a normalized SQL Server schema and use joins to show business-friendly records in the Tkinter interface.
+A desktop-based database application developed for a university database systems course.  
+The project simulates the operational workflow of an automotive service business through two integrated modules:
 
-Tech Stack
-Python
-Tkinter
-Microsoft SQL Server
-pyodbc
-SHA-256 based login hash comparison
+- **Car Repair Tracking System**
+- **Damage & Insurance Tracking System**
 
-Project Structure
+The project is primarily **database-centered** and focuses on demonstrating relational database design, SQL operations, and business process modeling using Microsoft SQL Server.
+
+
+# Features
+
+## Car Repair Tracking Module
+
+- Service intake and repair tracking
+- Work order management
+- Labor and technician records
+- Used parts tracking
+- Inventory management
+- Supplier order management
+- Invoice generation
+- Payment tracking
+- Personnel registration and authentication
+
+
+## Damage & Insurance Tracking Module
+
+- Customer and vehicle management
+- Accident record tracking
+- Damage assessment records
+- Insurance policy management
+- Insurance claim tracking
+- Related parts and inventory records
+
+
+
+# Technologies Used
+
+- **Python**
+- **Tkinter** (Desktop GUI)
+- **Microsoft SQL Server**
+- **pyodbc**
+- **SHA-256 password hash verification**
+
+
+
+# Project Structure
+
+```text
 DBProject/
-  car_repair_app/        # Repair workflow UI screens
-  damage_app/            # Damage and insurance workflow UI screens
-  core/                  # Shared database connection and authentication
-  utils/                 # Shared helper functions
-  docs/                  # Database and workflow notes
-  run_car_repair.py      # Car repair module launcher
-  run_damage_tracking.py # Damage tracking module launcher
-  
-Key Database Areas
-Personnel authentication and department/position based user records
-Customer and vehicle ownership records
-Service intake, repair work orders, labor, and used part tracking
-Inventory stock updates through supplier orders and used parts
-Invoice and payment lifecycle
-Accident records, damage assessments, insurance policies, and claims
+│
+├── car_repair_app/          # Car repair workflow screens
+├── damage_app/              # Damage & insurance workflow screens
+├── core/                    # Shared database connection & authentication
+├── utils/                   # Helper utilities
+│
+├── docs/                    # Database notes and documentation
+│
+├── run_car_repair.py        # Launch car repair module
+├── run_damage_tracking.py   # Launch damage tracking module
+│
+└── requirements.txt
 
-Setup
-Create and activate a virtual environment.
+# Database Scope
+
+The system includes relational structures for:
+
+- Personnel authentication and authorization
+- Department and position-based employee records
+- Customer and vehicle ownership information
+- Service intake and repair operations
+- Labor and used-part tracking
+- Supplier orders and stock management
+- Invoice and payment lifecycle
+- Accident and damage assessment records
+- Insurance policies and claim management
+
+The application uses SQL joins extensively to present business-friendly records inside the Tkinter interface.
+
+
+
+# Setup
+
+## 1. Create a Virtual Environment
+
+```bash
 python -m venv .venv
-.venv\Scripts\activate
-Install dependencies.
-pip install -r requirements.txt
-Configure SQL Server access.
-Use .env.example as a template for local settings. The application reads these values from environment variables:
 
+
+Activate the environment:
+
+### Windows
+
+```bash
+.venv\Scripts\activate
+```
+
+
+## 2. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+
+
+## 3. Configure SQL Server Connection
+
+Use the following environment variables:
+
+```env
 DB_DRIVER=SQL Server
 DB_SERVER=localhost
 DB_NAME=DBProject
 DB_TRUSTED_CONNECTION=yes
-If SQL Server authentication is used, set DB_TRUSTED_CONNECTION=no, DB_USER, and DB_PASSWORD.
+```
 
-Note: .env is ignored by Git. Export these values in your terminal or IDE run configuration before starting the app.
+If using SQL Server Authentication:
 
-Make sure the SQL Server database is named DBProject or update DB_NAME.
+```env
+DB_TRUSTED_CONNECTION=no
+DB_USER=your_username
+DB_PASSWORD=your_password
+```
 
-Run one of the modules.
+> `.env` files are ignored by Git for security reasons.
 
+
+
+## 4. Prepare the Database
+
+Make sure:
+
+- SQL Server is running
+- The database name is `DBProject`
+- Required tables and seed data already exist
+
+
+
+## 5. Run the Application
+
+### Car Repair Module
+
+```bash
 python run_car_repair.py
+```
+
+### Damage Tracking Module
+
+```bash
 python run_damage_tracking.py
-Notes for Reviewers
-The application expects an existing SQL Server schema and seed data.
-Passwords in the Personnel table are expected to be stored as SHA-256 hashes.
-Database access is centralized in core/db.py, making it easy to change the server, database name, or authentication mode without editing every screen.
+```
+
+---
+
+# Authentication
+
+Personnel passwords are expected to be stored using **SHA-256 hashing** inside the database.
 
 
-Course Project Focus
-This repository demonstrates database design usage through a real business scenario: entities are connected across customers, 
-vehicles, service operations, inventory, payments, personnel, accidents, assessments, and insurance records. The UI is simple by design, while the database interactions show the main value of the project.
+
+This makes database configuration and authentication management easier to maintain.
+
+
+# Educational Purpose
+
+This project was developed as a university course project to demonstrate:
+
+- Relational database design
+- SQL-based CRUD operations
+- Entity relationships
+- Normalization principles
+- Real-world business workflow modeling
+- Database-driven desktop application development
+
+The user interface is intentionally lightweight, while the main focus is placed on database structure, relationships, and data operations.
+
+
