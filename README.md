@@ -1,6 +1,5 @@
 # Automotive Service & Damage Tracking Database System
 
-A desktop-based database application developed for a university database systems course.  
 The project simulates the operational workflow of an automotive service business through two integrated modules:
 
 - **Car Repair Tracking System**
